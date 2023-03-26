@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Info customer</title>
+</head>
+<body>
+<h1>Info customer:</h1>
+<a href="/customers">Customer List</a>
+<table border="1">
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Province</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr>
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.lastName}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:if="${customer.province}" th:text="${customer.province.name}"></td>
+        <td th:unless="${customer.province}"></td>
+    </tr>
+</table>
+</body>
+</html>

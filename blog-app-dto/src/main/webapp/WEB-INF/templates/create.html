@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+  <meta charset= "UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<a th:href="@{/blogs}">Back to list</a>
+<h1>CREATE NEW BLOG</h1>
+<th:block th:if="${message}">
+  <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/blogs/create}" th:object="${blogDto}" method="post">
+  <input name="id" type="hidden" th:field="*{id}">
+  <p>Name</p>
+  <input type="text" th:field="*{name}">
+  <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+
+  <p>Author</p>
+  <input type="text" th:field="*{author}">
+  <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author Error</p>
+
+  <p>Access</p>
+  <input type="text" th:field="*{access}">
+  <p th:if="${#fields.hasErrors('access')}" th:errors="*{access}">Access Error</p>
+<!--  <p>Created Date</p>-->
+<!--  <input type="text" th:field="*{createdDate}">-->
+  <input type="submit" th:value="Create">
+</form>
+</body>
+</html>

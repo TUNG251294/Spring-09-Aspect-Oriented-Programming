@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.8.2'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    compileOnly('javax.servlet:javax.servlet-api:4.0.1')
+
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.23'
+//Thymeleaf
+    implementation group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.0.15.RELEASE'
+    implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
+//File Upload
+//    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+//    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+//Hibernate
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.14.Final'
+    implementation group: 'org.springframework', name: 'spring-orm', version: '5.3.23'
+    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.6.14.Final'
+//JDBC Driver
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.31'
+//JPA
+    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.7.0'
+//Validator
+    implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.10.Final'
+
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.4'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
